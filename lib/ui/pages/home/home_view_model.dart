@@ -14,6 +14,16 @@ class HomeViewModel extends AutoDisposeNotifier<List<Location>>{
     state = await locationRepository.searchLocation(query);
   }
 
+  Future<void> searchByLocation(double lng, double lat) async {
+    try {
+      List<String> result = await locationRepository.findByLating(lat, lng);
+      if (result.isNotEmpty) {
+        state = await locationRepository.searchLocation(result[0]);
+      }
+    } catch (e) {
+      print('Error in searchByLocation: $e');
+    }
+  }
 
 }
 

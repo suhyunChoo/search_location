@@ -9,13 +9,11 @@ class LocationRepository {
     validateStatus: (statue) => true,
   ));
 
-  
 
   Future<List<Location>> searchLocation(String query) async {
     try {
       final response =
           await _client.get('https://openapi.naver.com/v1/search/local.json?',
-              ///query=검색할지역이름&display=5'
               queryParameters: {
             'query': query,
             'display': 10,
@@ -54,4 +52,37 @@ class LocationRepository {
       return [];
     }
   }
+  
+  Future<List<String>> findByLating(double lat, double lng) async {
+    try {
+      final response = await _client.get(
+        'https://api.vworld.kr/req/data',
+        queryParameters: {
+          'request': 'GetFeature',
+          'key': 'D50FFAC5-D1B2-3086-B203-48C2AAE9CB79',
+          'data': 'LT_C_ADEMD_INFO',
+          'geomFilter': 'POINT(${lng} ${lat})',
+          'geometry': false,
+          'size': 100,
+        },
+      );
+      if (response.statusCode == 200 &&
+          response.data['response']['status'] == 'OK') {
+        final features = response.data['response']['result']['featureCollection']['features'];
+        final featuresList = List.from(features);
+        final iterable = featuresList.map((feat) {
+          return '${feat['properties']['full_nm']}';
+        });
+        return iterable.toList();
+      }
+      return [];
+    } catch (e) {
+      print(e);
+      return [];
+    }
+  }
+
+
+
+
 }

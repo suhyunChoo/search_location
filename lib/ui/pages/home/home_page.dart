@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_search_location_app/core/geolocator_helper.dart';
+import 'package:flutter_search_location_app/data/repository/location_repository.dart';
 import 'package:flutter_search_location_app/ui/pages/detail/detail_page.dart';
 import 'package:flutter_search_location_app/ui/pages/home/home_view_model.dart';
 
@@ -12,6 +14,27 @@ class HomePage extends StatelessWidget {
       },
       child: Scaffold(
         appBar: AppBar(
+          actions: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              child: Consumer(builder: (context, ref, child) {
+                return GestureDetector(
+                  onTap: () async {
+                    print('button touch');
+                    final position = await GeolocatorHelper.getPositon();
+                    if (position != null) {
+                      print(
+                          'lat:${position.latitude} lng:${position.longitude}');
+                      final viewModel = ref.read(homeViewModel.notifier);
+                      viewModel.searchByLocation(
+                          position.longitude, position.latitude);
+                    }
+                  },
+                  child: Icon(Icons.gps_fixed),
+                );
+              }),
+            ),
+          ],
           title: Consumer(builder: (context, ref, child) {
             return TextField(
               onSubmitted: (value) {
@@ -46,6 +69,9 @@ class HomePage extends StatelessWidget {
                               MaterialPageRoute(builder: (context) {
                             return DetailPage(location.link);
                           }));
+                        } else {
+                          //링크가 없다고 알려주기
+                          print('null');
                         }
                       },
                       child: Container(

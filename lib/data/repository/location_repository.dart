@@ -1,8 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter_search_location_app/data/model/location.dart';
 import 'package:html/parser.dart';
-import 'package:http/http.dart';
 
 class LocationRepository {
   final Dio _client = Dio(BaseOptions(
@@ -52,7 +50,7 @@ class LocationRepository {
       return [];
     }
   }
-  
+
   Future<List<String>> findByLating(double lat, double lng) async {
     try {
       final response = await _client.get(

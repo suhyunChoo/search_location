@@ -18,6 +18,7 @@ class Location {
   String roadAddress;
   String mapx;
   String mapy;
+  bool favorite;
 
   Location({
     required this.address,
@@ -28,7 +29,8 @@ class Location {
     required this.roadAddress,
     required this.telephone,
     required this.title,
-    required this.link
+    required this.link,
+    required this.favorite,
   });
 
   Location.fromJson(Map<String, dynamic> map)
@@ -41,7 +43,8 @@ class Location {
         roadAddress: map['roadAddress'],
         telephone: map['telephone'],
         title: map['title'],
-        link: map['link']
+        link: map['link'],
+        favorite: map['favorite']??false,
         );
   Map<String, dynamic> toJson() => {
     'title': title,
@@ -53,5 +56,31 @@ class Location {
     'category':category,
     'address':address,
     'link':link,
+    'favorite':favorite,
   };
+  Location copyWith({
+    String? title,
+    String? link,
+    String? category,
+    String? description,
+    String? telephone,
+    String? address,
+    String? roadAddress,
+    String? mapx,
+    String? mapy,
+    bool? favorite,
+  }) {
+    return Location(
+      title: title ?? this.title,
+      link: link ?? this.link,
+      category: category ?? this.category,
+      description: description ?? this.description,
+      telephone: telephone ?? this.telephone,
+      address: address ?? this.address,
+      roadAddress: roadAddress ?? this.roadAddress,
+      mapx: mapx ?? this.mapx,
+      mapy: mapy ?? this.mapy,
+      favorite: favorite ?? this.favorite,
+    );
+  }
 }

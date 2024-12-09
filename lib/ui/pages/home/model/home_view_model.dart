@@ -24,6 +24,15 @@ class HomeViewModel extends AutoDisposeNotifier<List<Location>>{
       print('Error in searchByLocation: $e');
     }
   }
+  void toggleFavorite(String title) {
+    state = state.map((location) {
+      if (location.title == title) {
+        return location.copyWith(favorite: !location.favorite);
+      }
+      return location;
+    }).toList();
+  }
+
 
 }
 

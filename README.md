@@ -1,16 +1,15 @@
 # flutter_search_location_app
 
-A new Flutter project.
+# 📍 Location Search App
+``Flutter`` 를 기반으로 한 지역 검색 앱입니다.
 
-## Getting Started
+## 💡 프로젝트 소개
 
-This project is a starting point for a Flutter application.
+### ⏱️ 프로젝트 기간
+``2024. 12. 06 - 2024. 12. 29``
 
-A few resources to get you started if this is your first Flutter project:
+## 💡 어떻게 사용하나요?
+[실제 구현 화면](https://github.com/suhyunChoo/search_location/blob/main/ezgif.com-video-to-gif-converter.gif)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+1. 지역명을 검색하여 관련 장소를 검색할 수 있습니다.
+2. 현재 위치를 받아와서 현재 위치명으로 관련 장소를 검색할 수 있습니다.

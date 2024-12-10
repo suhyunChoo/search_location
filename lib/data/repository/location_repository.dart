@@ -52,7 +52,7 @@ class LocationRepository {
   }
 
   //vworld 현재 위치로 장소명 가져오기
-  Future<List<String>> findByLating(double lat, double lng) async {
+  Future<List<String>> findByLatlng(double lat, double lng) async {
     try {
       final response = await _client.get(
         'https://api.vworld.kr/req/data',

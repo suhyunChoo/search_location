@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
+//연결된 링크 인앱웹뷰 통해 보여주는 페이지
+
 class DetailPage extends StatelessWidget {
   String link;
 
@@ -15,12 +17,6 @@ class DetailPage extends StatelessWidget {
       body: SizedBox(
         child: InAppWebView(
           initialUrlRequest: URLRequest(url: WebUri(link)),
-          // initialSettings: InAppWebViewSettings(
-          //   useWideViewPort: true,
-          //   javaScriptEnabled: true,
-          //   cacheEnabled: false,
-          //   userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X) AppleWebKit/537.36 (KHTML, like Gecko) Version/14.0 Mobile/15E148 Safari/537.36",
-          // ),
         ),
       ),
     );

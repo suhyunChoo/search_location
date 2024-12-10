@@ -5,6 +5,7 @@ import 'package:flutter_search_location_app/ui/pages/home/model/home_view_model.
 
 Widget searchResultWidget(Location location){
 
+//검색 결과 리스트 뷰 내에 반환해주는 위젯
   return Consumer(
     builder: (context,ref,child) {
       return Container(
@@ -16,9 +17,9 @@ Widget searchResultWidget(Location location){
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              
               Row(
                 children: [
+                  //검색 타이틀
                   Text(
                   location.title,
                   style: TextStyle(
@@ -27,10 +28,11 @@ Widget searchResultWidget(Location location){
                   ),
                 ),
                 Spacer(),
+                //즐겨찾기 버튼
                 GestureDetector(
+                    //버튼 누를 경우
                     onTap: () {
                       ref.read(homeViewModel.notifier).toggleFavorite(location.title);
-                      
                     },
                     child: Container(
                       color: Colors.transparent,
@@ -42,10 +44,12 @@ Widget searchResultWidget(Location location){
                   ),
                 ]
               ),
+              //카테고리 표시
               Text(
                 location.category,
                 style: TextStyle(fontSize: 16),
               ),
+              //주소 표시
               Text(location.roadAddress,
                   style: TextStyle(fontSize: 16)),
             ],

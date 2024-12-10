@@ -15,11 +15,13 @@ class HomeBottomNavigationBar extends StatelessWidget {
           onTap: viewModel.onIndexChanged,
           items: [
           BottomNavigationBarItem(
+            //검색탭(홈페이지)
             icon: Icon(Icons.search),
             activeIcon: Icon(Icons.search_outlined),
             label: '검색',
             tooltip: '검색',
           ),
+          //즐겨찾기탭
           BottomNavigationBarItem(
             icon: Icon(CupertinoIcons.star),
             activeIcon: Icon(CupertinoIcons.star_fill),

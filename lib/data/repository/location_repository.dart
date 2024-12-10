@@ -7,7 +7,7 @@ class LocationRepository {
     validateStatus: (statue) => true,
   ));
 
-
+  //지역명 검색
   Future<List<Location>> searchLocation(String query) async {
     try {
       final response =
@@ -51,6 +51,7 @@ class LocationRepository {
     }
   }
 
+  //vworld 현재 위치로 장소명 가져오기
   Future<List<String>> findByLating(double lat, double lng) async {
     try {
       final response = await _client.get(

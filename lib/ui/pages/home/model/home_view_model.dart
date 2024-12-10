@@ -10,10 +10,12 @@ class HomeViewModel extends AutoDisposeNotifier<List<Location>>{
 
   final locationRepository = LocationRepository();
 
+  //지역명으로 검색
   Future<void> search(String query)async{
     state = await locationRepository.searchLocation(query);
   }
 
+  //현재 위치로 검색
   Future<void> searchByLocation(double lng, double lat) async {
     try {
       List<String> result = await locationRepository.findByLating(lat, lng);
@@ -21,9 +23,11 @@ class HomeViewModel extends AutoDisposeNotifier<List<Location>>{
         state = await locationRepository.searchLocation(result[0]);
       }
     } catch (e) {
-      print('Error in searchByLocation: $e');
+      print('Error: $e');
     }
   }
+
+  //즐겨찾기(favorite을 true, false로 바꾸는 메서드)
   void toggleFavorite(String title) {
     state = state.map((location) {
       if (location.title == title) {
